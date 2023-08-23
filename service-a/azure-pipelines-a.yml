@@ -30,5 +30,4 @@ stages:
       runOnce:
         deploy:
           steps:
-          - script: |
-          echo "Hello from 'a'"
+          - script: echo "Hello from 'a'"
