@@ -15,6 +15,8 @@ trigger:
       - 'service-b/*'
 
 pool:
+  name: Default
+  environment: b
   vmImage: 'ubuntu-latest'
 
 steps:
