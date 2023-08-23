@@ -14,16 +14,26 @@ trigger:
     include:
       - 'service-b/*'
 
-pool:
-  name: Default
-  environment: b
-  vmImage: 'ubuntu-latest'
+stages:
+- stage: 'B'
+  displayName: 'Deploy to the B environment'
+  jobs:
+  - deployment: Deploy
+    pool:
+      name: Default
+      vmImage: 'ubuntu-20.04'
+    environment: b
+    variables:
+    - group: 'Release'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "Hello from 'service-b'"
 
-steps:
-- script: echo "Hello from 'service-b'"
+          - script: npm install
+            workingDirectory: $(working-dir)
 
-- script: npm install
-  workingDirectory: $(working-dir)
+          - script: npm run chalk
+            workingDirectory: $(working-dir)
 
-- script: npm run chalk
-  workingDirectory: $(working-dir)
