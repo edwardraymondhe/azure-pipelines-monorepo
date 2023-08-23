@@ -11,6 +11,7 @@ trigger:
       - 'service-a/*'
 
 pool:
+  name: Default
   vmImage: 'ubuntu-latest'
   environment: a
 
